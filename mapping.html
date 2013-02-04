@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>ISAT252 Zip Codes</title>
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/standard.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+    var geocoder;
+    var map;
+    var pins = [];
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(40.768505,-111.853244);
+        var myOptions = {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+		{map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		// need to iterate over csv file instead of adding them all manually -CR
+        addZipCode('10475');
+        addZipCode('10598');
+        addZipCode('11792');
+        addZipCode('14424');
+        addZipCode('17325');
+		addZipCode('19335');
+		addZipCode('19465');
+		addZipCode('20112');
+		addZipCode('20119');
+		addZipCode('20120');
+		addZipCode('20121');
+		addZipCode('20132');
+		addZipCode('20137');
+		addZipCode('20147');
+		addZipCode('20148');
+		addZipCode('20151');
+		addZipCode('20152');
+		addZipCode('20158');
+		addZipCode('20164');
+		addZipCode('20171');
+		addZipCode('20176');
+		addZipCode('20194');
+		addZipCode('20723');
+		addZipCode('20877');
+		addZipCode('20878');
+		addZipCode('20902');
+		addZipCode('21012');
+		addZipCode('21042');
+		addZipCode('21043');
+		addZipCode('21061');
+		addZipCode('21784');
+		addZipCode('22003');
+		addZipCode('22015');
+		addZipCode('22030');
+		addZipCode('22041');
+		addZipCode('22066');
+		addZipCode('22102');
+		addZipCode('22152');
+		addZipCode('22153');
+		addZipCode('22181');
+		addZipCode('22192');
+		addZipCode('22193');
+		addZipCode('22205');
+		addZipCode('22207');
+		addZipCode('22213');
+		addZipCode('22407');
+		addZipCode('22408');
+		addZipCode('22482');
+		addZipCode('22485');
+		addZipCode('22508');
+		addZipCode('22520');
+		addZipCode('22534');
+		addZipCode('22551');
+		addZipCode('22554');
+		addZipCode('22603');
+		addZipCode('22630');
+		addZipCode('22701');
+		addZipCode('22737');
+		addZipCode('22801');
+		addZipCode('22802');
+		addZipCode('22812');
+		addZipCode('22815');
+		addZipCode('22824');
+		addZipCode('22827');
+		addZipCode('22835');
+		addZipCode('22844');
+		addZipCode('22901');
+		addZipCode('22932');
+		addZipCode('22936');
+		addZipCode('23005');
+		addZipCode('23024');
+		addZipCode('23059');
+		addZipCode('23124');
+		addZipCode('23185');
+		addZipCode('23221');
+		addZipCode('23226');
+		addZipCode('23228');
+		addZipCode('23301');
+		addZipCode('23322');
+		addZipCode('23452');
+		addZipCode('23454');
+		addZipCode('23455');
+		addZipCode('23456');
+		addZipCode('23602');
+		addZipCode('23664');
+		addZipCode('23693');
+		addZipCode('23834');
+		addZipCode('24018');
+		addZipCode('24019');
+		addZipCode('24060');
+		addZipCode('24112');
+		addZipCode('24153');
+		addZipCode('24354');
+		addZipCode('24401');
+		addZipCode('24426');
+		addZipCode('24502');
+		addZipCode('24541');
+		addZipCode('28560');
+		addZipCode('30542');
+		addZipCode('60005');
+		addZipCode('00434');
+		addZipCode('06877');
+		addZipCode('07739');
+		addZipCode('07843');
+		addZipCode('07921');
+		addZipCode('08048');
+		addZipCode('08085');
+		addZipCode('08801');
+		}
+    }
+
+    function addZipCode(zip) {
+        geocoder.geocode( { 'address': zip}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK)
+        {
+            map.setCenter(results[0].geometry.location);
+            var pin = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            name: zip
+        });
+        pins.push(pin);
+        } // else {
+//             alert("Geocode was not successful for the following reason: " + status);
+//         }
+		// I'm not sure why the query has reached it's limit....problem to tackle during Hacking?
+		// I just commented it out for now and it seems to function the same -CR
+        });
+    }
+	
+</script>
+</head>
+<body onload="initialize()">
+<p><h3>This map shows the zip codes of all students in </ br>
+		ISAT 252 (Spring 2013).</h3></p>
+<div id="map_canvas" style="height:75%; width:75%"></div>
+</body>
+</html>
